@@ -9,13 +9,14 @@
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	if (!tree || !func)
-		return;
-
 	int front = 0, rear = 0;
 	binary_tree_t *current;
-	binary_tree_t **quene = malloc(sizeof(binary_tree_t) * 100);
+	binary_tree_t **quene;
 
+	if (!tree || !func)
+		 return;
+	
+	quene = malloc(sizeof(binary_tree_t) * 100);
 	if (!quene)
 		return;
 
