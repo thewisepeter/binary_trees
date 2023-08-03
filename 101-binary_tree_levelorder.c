@@ -9,14 +9,15 @@
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
+	int capacity = 100;
 	int front = 0, rear = 0;
 	binary_tree_t *current;
 	binary_tree_t **quene;
 
 	if (!tree || !func)
-		 return;
-	
-	quene = malloc(sizeof(binary_tree_t *) * 100);
+		return;
+
+	quene = malloc(sizeof(binary_tree_t *) * capacity);
 	if (!quene)
 		return;
 
@@ -25,6 +26,16 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	{
 		current = quene[front++];
 		func(current->n);
+
+		if (rear >= capacity)
+		{
+			capacity *= 2;
+			quene = realloc(quene, sizeof(binary_tree_t *) * capacity);
+			if (!quene)
+			{
+				return;
+			}
+		}
 
 		if (current->left != NULL)
 		{
