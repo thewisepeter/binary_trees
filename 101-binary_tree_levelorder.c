@@ -12,14 +12,12 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	if (!tree || !func)
 		return;
 
+	int front = 0, rear = 0;
+	binary_tree_t *current;
 	binary_tree_t **quene = malloc(sizeof(binary_tree_t) * 100);
 
 	if (!quene)
 		return;
-
-	int front = 0, rear = 0;
-	binary_tree_t *current;
-
 
 	quene[rear++] = (binary_tree_t *) tree;
 	while (front < rear)
